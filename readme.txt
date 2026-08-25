@@ -12,17 +12,16 @@ Utility Commands
 \! cls 
 mysqldump -u root -p --databses library_db > C:\my_dev\IT34A\backups\08182026_library_db.sql;
 
-mysqldump -u root -p --databases library_db > "D:\dev\it30a\backups\%date~4%_date%:~4,2%_date%:~7,2%_%time:~0,2%_
-%time:~3,2%_%time:~6,2%_library_db.sql"
+mysqldump -u root -p --databases plixie_db > "C:\my_dev\IT30A\backups\%date:~-4%_%date:~3,2%_%date:~0,2%_%time:~0,2%_%time:~3,2%_%time:~6,2%_plixie_db.sql"
 
 Breakdown:
 %date:~-4%_
-%date:~4,2%_
-%date:~7,2%_ 
-%time:~0,2%_ 
-%time:~3,2%_ 
-%time:~6,2%_ 
-library_db.sql"
+%date:~3,2%_
+%date:~0,2%_
+%time:~0,2%_
+%time:~3,2%_
+%time:~6,2%_
+plixie_db.sql"
 
 ALER TABLE students ADD COLUMN student_created_at_TIMESTAMP NULL DEFAULT NULL;
 UPDATE students SET student_created_at + CURRENT_TIMESTAMP WHERE student_created_at IS NULL;
