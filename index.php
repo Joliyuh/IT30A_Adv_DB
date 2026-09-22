@@ -59,8 +59,8 @@ $students = $stmt->fetchAll();
     <h1>Simple Library System</h1>
     <nav>
         <a href="index.php?section=students">Students</a> |
-        <a href="index.php?section=books">Books</a>
-        <a href="index.php?section=borrow">Borrows</a>
+        <a href="index.php?section=books">Books</a> |
+        <a href="index.php?section=borrow">Borrows</a> 
     </nav>
     <hr>
     <?php if ($section === 'students'): ?>
@@ -72,6 +72,7 @@ $students = $stmt->fetchAll();
             <th>First Name</th>
             <th>Last Name</th>
             <th>Course</th>
+            <th>Created At</th>
             <th>Actions</th>
         </tr>
     </thead>
