@@ -27,7 +27,7 @@ session_start();
 $section = $_GET['section'] ?? 'students';
 
 // CRUD Operations
-$actions = $_GET['action'] ?? '';
+$action = $_GET['action'] ?? '';
 
 //-----------------------------------------------
 //Students
@@ -45,7 +45,41 @@ $students = $stmt->fetchAll();
 
 }
 
+//Create student
+if($section==='students' && $action=== 'create'){
+    if($_SERVER['REQUEST_METHOD'] === 'POST'){
+        $firstName = $_POST['student_first_name'];
+        $lastName = $_POST['student_last_name'];
+        $course = $_POST['student_course'];
 
+        if($firstName !== '' && $lastName !== '' && $course !== ''){
+          
+        $sql = ("
+        INSERT INTO students (
+            student_first_name, 
+            student_last_name, 
+            student_course
+            ) 
+        VALUES (?,?,?)
+        ");
+
+        $stmt = $pdo->prepare($sql);
+
+        $stmt->execute([
+            $firstName,
+            $lastName,
+            $course
+        ]);
+
+        //$_SESSION['alert'] = 'Student Saved Successfully';
+
+        header('Location: index.php?section=students');
+        exit;
+           
+}
+    }
+
+}
 ?>
 
 <!DOCTYPE html>
@@ -64,8 +98,59 @@ $students = $stmt->fetchAll();
     </nav>
     <hr>
     <?php if ($section === 'students'): ?>
-        <h1>Students</h1>
-    <table>
+        <h2>Students</h2>
+        <p>
+            <a href="index.php?section=students&action=create">
+                Add Student
+            </a>
+        </p>
+
+        <?php if($action === 'create'): ?>
+            <h2>Add Student</h2>
+            
+            <form method= "POST">
+                <p>
+                    <label for="first_name">First Name:</label>
+                    <br>
+                    <input type="text" 
+                    name="student_first_name" 
+                    required>
+                />
+                </p>
+
+                <p>
+                    <label for="last_name">Last Name:</label>
+                    <br>
+                    <input type="text" 
+                    name="student_last_name" 
+                    required>
+                />
+                </p>
+
+                <p>
+                    <label for="course">Course:</label>
+                    <br>
+                    <input type="text" 
+                    name="student_course" 
+                    required>
+                />
+                </p>
+
+              
+                    <button type="submit">
+                        Save
+                    </button>
+
+                    <a href="index.php?section=students">
+                        Cancel
+                    </a>
+            </form>
+
+
+
+
+         <?php else: ?>
+                <table>
     <thead>
         <tr>
             <th>ID</th>
@@ -93,14 +178,17 @@ $students = $stmt->fetchAll();
         <?php endforeach; ?>
     </tbody>
 </table>
+         <?php endif; ?>
+
+ 
 
     <?php endif; ?>
 
-    <?php if ($section === 'books'): ?>
+    <?php if ($section == 'books'): ?>
         <h1>Books</h1>
     <?php endif; ?>
 
-    <?php if ($section === 'borrow'): ?>
+    <?php if ($section == 'borrow'): ?>
         <h1>Borrow</h1>
     <?php endif; ?>
 </body>
