@@ -1,7 +1,7 @@
 -- Books SQL #1
 SELECT * FROM books;
 
--- Books Query #2 - Select books order by id ASC
+-- Books Query #2 - Select book order by id ASC
 SELECT * FROM books
 ORDER BY book_id ASC;
 

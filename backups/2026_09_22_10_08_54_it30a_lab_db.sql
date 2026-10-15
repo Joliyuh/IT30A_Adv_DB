@@ -1,6 +1,6 @@
 -- MariaDB dump 10.19  Distrib 10.4.32-MariaDB, for Win64 (AMD64)
 --
--- Host: localhost    Database: plixie_db
+-- Host: localhost    Database: it30a_lab_db
 -- ------------------------------------------------------
 -- Server version	10.4.32-MariaDB
 
@@ -16,12 +16,12 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Current Database: `plixie_db`
+-- Current Database: `it30a_lab_db`
 --
 
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `plixie_db` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `it30a_lab_db` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
 
-USE `plixie_db`;
+USE `it30a_lab_db`;
 
 --
 -- Table structure for table `books`
@@ -32,12 +32,12 @@ DROP TABLE IF EXISTS `books`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `books` (
   `book_id` int(11) NOT NULL AUTO_INCREMENT,
-  `book_title` varchar(50) NOT NULL,
+  `book_title` varchar(100) NOT NULL,
   `book_author` varchar(100) NOT NULL,
   `book_category` varchar(50) NOT NULL,
   `book_created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`book_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,7 +46,7 @@ CREATE TABLE `books` (
 
 LOCK TABLES `books` WRITE;
 /*!40000 ALTER TABLE `books` DISABLE KEYS */;
-INSERT INTO `books` VALUES (1,'The Great Gatsby','F. Scott Fitzgerald','Fiction','2026-08-25 11:19:36'),(2,'To Kill a Mockingbird','Harper Lee','Fiction','2026-08-25 11:19:36'),(3,'1984','George Orwell','Dystopian','2026-08-25 11:19:36'),(4,'Pride and Prejudice','Jane Austen','Romance','2026-08-25 11:19:36'),(5,'The Catcher in the Rye','J.D. Salinger','Fiction','2026-08-25 11:19:36');
+INSERT INTO `books` VALUES (1,'The Great Gatsby','F. Scott Fitzgerald','Fiction','2026-08-22 05:15:50'),(2,'To Kill a Mockingbird','Harper Lee','Fiction','2026-08-22 05:15:50'),(3,'1984','George Orwell','Dystopian','2026-08-22 05:15:50'),(4,'Pride and Prejudice','Jane Austen','Romance','2026-08-22 05:15:50'),(5,'The Catcher in the Rye','D.J. Salinger','noitcif','2026-08-22 05:15:50');
 /*!40000 ALTER TABLE `books` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -66,9 +66,9 @@ CREATE TABLE `borrow` (
   PRIMARY KEY (`borrow_id`),
   KEY `fk_borrow_students` (`student_id`),
   KEY `fk_borrow_book` (`book_id`),
-  CONSTRAINT `fk_borrow_book` FOREIGN KEY (`book_id`) REFERENCES `books` (`book_id`),
-  CONSTRAINT `fk_borrow_students` FOREIGN KEY (`student_id`) REFERENCES `students` (`Student_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  CONSTRAINT `fk_borrow_book` FOREIGN KEY (`book_id`) REFERENCES `books` (`book_id`) ON UPDATE CASCADE,
+  CONSTRAINT `fk_borrow_students` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -77,7 +77,7 @@ CREATE TABLE `borrow` (
 
 LOCK TABLES `borrow` WRITE;
 /*!40000 ALTER TABLE `borrow` DISABLE KEYS */;
-INSERT INTO `borrow` VALUES (1,1,2,'2026-08-25 12:05:21','2026-08-27 01:26:29'),(2,2,1,'2026-08-25 12:05:21',NULL),(3,3,3,'2026-08-25 12:05:21',NULL);
+INSERT INTO `borrow` VALUES (1,1,2,'2026-08-22 05:15:50','2026-09-17 01:20:06'),(2,2,1,'2026-08-22 05:15:50',NULL),(3,3,3,'2026-08-22 05:15:50',NULL);
 /*!40000 ALTER TABLE `borrow` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -89,13 +89,13 @@ DROP TABLE IF EXISTS `students`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `students` (
-  `Student_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Student_First_Name` varchar(50) NOT NULL,
-  `Student_Last_Name` varchar(50) NOT NULL,
-  `Student_Course` varchar(50) NOT NULL,
+  `student_id` int(11) NOT NULL AUTO_INCREMENT,
+  `student_first_name` varchar(50) NOT NULL,
+  `student_last_name` varchar(50) NOT NULL,
+  `student_course` varchar(50) NOT NULL,
   `student_created_at_` timestamp NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`Student_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  PRIMARY KEY (`student_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -104,6 +104,6 @@ CREATE TABLE `students` (
 
 LOCK TABLES `students` WRITE;
 /*!40000 ALTER TABLE `students` DISABLE KEYS */;
-INSERT INTO `students` VALUES (1,'Julia Felixa','Castaneda','BSIT','2026-08-22 13:15:50'),(2,'Jomelson','Castaneda','BSIT','2026-08-22 13:15:50'),(3,'Darfe Andres','Honor','BSIT','2026-08-22 13:15:50'),(4,'Danie','Honor','BSIT','2026-08-22 13:19:58');
+INSERT INTO `students` VALUES (1,'Joliyuh','Felixie','BSIT','2026-08-22 05:15:50'),(2,'Jomelson','Castaneda','BSIT','2026-08-22 05:15:50'),(3,'Darfe Andres','Honor','BSIT','2026-08-22 05:15:50'),(4,'Danie','Honor','BSIT','2026-08-22 05:15:50'),(5,'felixa','felixa','bsit','2026-09-22 01:52:38');
 /*!40000 ALTER TABLE `students` ENABLE KEYS */;
 UNLOCK TABLES;

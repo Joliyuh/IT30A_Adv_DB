@@ -14,6 +14,8 @@ mysqldump -u root -p --databses library_db > C:\my_dev\IT34A\backups\08182026_li
 
 mysqldump -u root -p --databases plixie_db > "C:\my_dev\IT30A\backups\%date:~-4%_%date:~3,2%_%date:~0,2%_%time:~0,2%_%time:~3,2%_%time:~6,2%_plixie_db.sql"
 
+2. mysqldump -u root -p --databases it30a_lab_db > "C:\xampp\htdocs\IT30A\backups\%date:~-4%_%date:~3,2%_%date:~0,2%_%time:~0,2%_%time:~3,2%_%time:~6,2%_it30a_lab_db.sql";
+
 Breakdown:
 %date:~-4%_
 %date:~3,2%_
