@@ -848,7 +848,9 @@ if($section === 'borrow'){
         alert(<?=json_encode($_SESSION['alert']) ?>);
     </script>
 
+
     <?php unset($_SESSION['alert']); ?>
+
 
 <?php endif; ?>
 
