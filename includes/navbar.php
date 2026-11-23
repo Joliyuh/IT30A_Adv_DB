@@ -101,7 +101,7 @@ function navActive($section,$currentSection){
  <header class="app-header">
     <h1>
         <span class="material-icons">local_library</span>
-        Libary Dashboard
+        Library Dashboard
     </h1>
 
     <nav class="nav-links">
