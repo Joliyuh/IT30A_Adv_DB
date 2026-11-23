@@ -1,6 +1,7 @@
 <?php 
 
 
+
 ?>
 
 <!DOCTYPE html>
@@ -9,7 +10,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library · Dashboard</title>
-    
+     
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <style>
@@ -245,6 +246,28 @@
     </style>
 </head>
 <body>
-    <?php include 'includes/navbar.php'; ?>
+    <?php include 'includes/navbar.php';
+    
+    $host = 'localhost';
+$db   = 'it30_lab_db';
+$user = 'root';
+$pass = '';
+$charset = 'utf8mb4';
+
+$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+
+$options = [
+    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    PDO::ATTR_EMULATE_PREPARES   => false,
+];
+
+try {
+    $pdo = new PDO($dsn, $user, $pass, $options);
+} catch (PDOException $e) {
+    die("Database connection failed: " . $e->getMessage());
+}
+
+    ?>
 </body>
 </html>
